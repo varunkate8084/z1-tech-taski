@@ -52,7 +52,7 @@ export default class UserController {
 
   static getUserByTitle = async (req: Request, res: Response) => {
     try {
-      const apiKey = "31a30c4d"
+      const apiKey = envConfigs.apiKey
       console.log(apiKey,"apiKey")
       const title = req.params.title;
       const response = await axios.get(`https://www.omdbapi.com/?apikey=${apiKey}&t=${title}`);
@@ -64,7 +64,7 @@ export default class UserController {
 
   static getSearchTerm = async (req: Request, res: Response) => {
     try {
-      const apiKey = "31a30c4d";
+      const apiKey = envConfigs.apiKey;
       const search = req.params.search;
       const response = await axios.get(`https://www.omdbapi.com/?apikey=${apiKey}&s=${search}`);
       res.status(200).send({ message: "Search term fetched successfully", data:response.data });

@@ -16,10 +16,10 @@ app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 app.use('/user', userRoutes);
-app.use("/",swagger.serve, swagger.setup(apiDocs));
 app.get("/check", (req, res) => {
     res.send("Hello World");
 });
+app.use("/",swagger.serve, swagger.setup(apiDocs));
 
 const port = envConfigs.port || 3000;
 app.listen(port,()=>{

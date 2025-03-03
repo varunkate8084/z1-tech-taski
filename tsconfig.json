@@ -9,6 +9,6 @@
       "skipLibCheck": true, // Skip checking types of all declaration files
       "forceConsistentCasingInFileNames": true // Ensure consistent casing in imports
   },
-  "include": ["src"], // Include source code
+  "include": ["src", "src/config/swagger.ts"], // Include source code
   "exclude": ["node_modules"] // Exclude unnecessary files
 }

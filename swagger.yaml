@@ -1,0 +1,113 @@
+openapi: 3.0.0
+info:
+  title: Movie API
+  description: API for fetching movie details from OMDB.
+  version: 1.0.0
+
+servers:
+  - url: https://z1-task-ts.onrender.com
+    description: Local development server
+
+paths:
+  /user/getbyTitle/{title}:
+    get:
+      summary: Get movie details by title
+      description: Fetches movie details from OMDB API using a title.
+      parameters:
+        - name: title
+          in: path
+          required: true
+          description: The title of the movie
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        "200":
+          description: Successfully fetched movie details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Movie details fetched successfully
+                  data:
+                    type: object
+                    example:
+                      Title: "Inception"
+                      Year: "2010"
+                      Director: "Christopher Nolan"
+        "400":
+          description: Invalid title provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Title is required
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Error fetching user details
+
+  /user/serchTerm/{search}:
+    get:
+      summary: Search for movies by term
+      description: Searches for movies on OMDB API using a search term.
+      parameters:
+        - name: search
+          in: path
+          required: true
+          description: The search term for movies
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        "200":
+          description: Successfully fetched search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Search term fetched successfully
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      example:
+                        Title: "The Dark Knight"
+                        Year: "2008"
+                        Director: "Christopher Nolan"
+        "400":
+          description: Invalid search term provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Search term is required
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Error fetching movie details
+                    
